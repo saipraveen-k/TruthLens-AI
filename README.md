@@ -8,7 +8,7 @@
 
 Advanced AI-powered news credibility analyzer helping you detect misinformation, analyze bias, and verify sources in real-time.
 
-[![License: Team NectGen](https://img.shields.io/badge/License-Team%20NectGen-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Team NextGen](https://img.shields.io/badge/License-Team%20NextGen-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![React 18](https://img.shields.io/badge/react-18-61dafb.svg)](https://reactjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green.svg)](https://fastapi.tiangolo.com/)

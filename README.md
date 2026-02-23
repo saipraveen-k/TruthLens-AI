@@ -80,8 +80,8 @@ Advanced AI-powered news credibility analyzer helping you detect misinformation,
 ### One-Click Deployment
 ```bash
 # Clone the repository
-git clone https://github.com/truthlens-ai/truthlens-ai.git
-cd truthlens-ai
+git clone https://github.com/saipraveen-k/TruthLens-AI
+cd TruthLens-AI
 
 # Deploy with Docker (recommended)
 chmod +x deploy.sh

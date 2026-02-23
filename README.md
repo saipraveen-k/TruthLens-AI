@@ -8,13 +8,13 @@
 
 Advanced AI-powered news credibility analyzer helping you detect misinformation, analyze bias, and verify sources in real-time.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Team NectGen](https://img.shields.io/badge/License-Team%20NectGen-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![React 18](https://img.shields.io/badge/react-18-61dafb.svg)](https://reactjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green.svg)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/Docker-2496ED.svg)](https://www.docker.com/)
 
-[Live Demo](https://truthlens.ai) • [API Docs](https://api.truthlens.ai/docs) • [Report](./REPORT.md) • [Setup Guide](./SETUP.md)
+[Live Demo](https://truthlens.ai) • [API Docs](https://github.com/saipraveen-k/TruthLens-AI/blob/main/API_DOCS.md) • [Report](https://github.com/saipraveen-k/TruthLens-AI/blob/main/REPORT.md) • [Setup Guide](https://github.com/saipraveen-k/TruthLens-AI/blob/main/SETUP.md)
 
 </div>
 
@@ -130,7 +130,7 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 
 | Metric | Value |
 |---------|-------|
-| **Accuracy** | 94% |
+| **Accuracy** | 84% |
 | **Processing Time** | < 3 seconds |
 | **Supported Languages** | 5+ |
 | **Daily Analysis Capacity** | 100,000+ |
@@ -265,8 +265,8 @@ We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md)
 ### Development Setup
 ```bash
 # Clone repository
-git clone https://github.com/truthlens-ai/truthlens-ai.git
-cd truthlens-ai
+git clone https://github.com/saipraveen-k/TruthLens-AI
+cd TruthLens-AI
 
 # Setup development environment
 ./deploy.sh dev
@@ -293,16 +293,16 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## 📞 Support
 
-- **Documentation**: [docs.truthlens.ai](https://docs.truthlens.ai)
-- **Issues**: [GitHub Issues](https://github.com/truthlens-ai/truthlens-ai/issues)
-- **Discord**: [Community Server](https://discord.gg/truthlens)
-- **Email**: support@truthlens.ai
+- **Documentation**: [docs.truthlens.ai](https://github.com/saipraveen-k/TruthLens-AI/blob/main/API_DOCS.md)
+- **Issues**: [GitHub Issues](https://github.com/saipraveen-k/TruthLens-AI/issues)
+- **Discord**: [Community Server](https://discord.gg/UMqxHEzq)
+- **Email**: Saipraveenkorubilli@gmail.com
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by the TruthLens AI Team**
+**Made with ❤️ by the NextGen Team**
 
 [![Star History Chart](https://api.star-history.com/svg?repos=truthlens-ai/truthlens-ai&type=Date)](https://star-history.com/#truthlens-ai/truthlens-ai&Date)
 

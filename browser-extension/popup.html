@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthLens AI</title>
+    <style>
+        body {
+            width: 350px;
+            min-height: 400px;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .popup-container {
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .logo img {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .logo h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .tagline {
+            font-size: 12px;
+            opacity: 0.8;
+            margin: 0;
+        }
+        
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .btn-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .btn-description {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+        
+        .recent-analysis {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .recent-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .recent-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .recent-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .recent-score {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .recent-score.high {
+            background: #22c55e;
+        }
+        
+        .recent-score.medium {
+            background: #f59e0b;
+        }
+        
+        .recent-score.low {
+            background: #ef4444;
+        }
+        
+        .recent-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .recent-title-text {
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .recent-time {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 11px;
+            opacity: 0.6;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-container">
+        <div class="header">
+            <div class="logo">
+                <img src="icons/icon32.png" alt="TruthLens AI">
+                <h1>TruthLens AI</h1>
+            </div>
+            <p class="tagline">Detect. Analyze. Trust.</p>
+        </div>
+        
+        <div class="actions">
+            <button class="btn" id="analyze-page">
+                <img src="icons/page-icon.png" alt="Page" class="btn-icon">
+                <div class="btn-text">
+                    <div>Analyze Current Page</div>
+                    <div class="btn-description">Check credibility of this article</div>
+                </div>
+            </button>
+            
+            <button class="btn" id="analyze-text">
+                <img src="icons/text-icon.png" alt="Text" class="btn-icon">
+                <div class="btn-text">
+                    <div>Analyze Selected Text</div>
+                    <div class="btn-description">Select text first, then click</div>
+                </div>
+            </button>
+            
+            <button class="btn" id="open-dashboard">
+                <img src="icons/dashboard-icon.png" alt="Dashboard" class="btn-icon">
+                <div class="btn-text">
+                    <div>Open Dashboard</div>
+                    <div class="btn-description">View analysis history</div>
+                </div>
+            </button>
+            
+            <button class="btn" id="settings">
+                <img src="icons/settings-icon.png" alt="Settings" class="btn-icon">
+                <div class="btn-text">
+                    <div>Settings</div>
+                    <div class="btn-description">Configure extension</div>
+                </div>
+            </button>
+        </div>
+        
+        <div class="recent-analysis" id="recent-analysis" style="display: none;">
+            <div class="recent-title">Recent Analyses</div>
+            <div id="recent-list"></div>
+        </div>
+        
+        <div class="footer">
+            TruthLens AI © 2024
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

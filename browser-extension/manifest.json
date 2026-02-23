@@ -1,0 +1,76 @@
+{
+  "manifest_version": 3,
+  "name": "TruthLens AI - News Credibility Analyzer",
+  "version": "1.0.0",
+  "description": "Detect misinformation and analyze news credibility in real-time while browsing",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "contextMenus",
+    "notifications"
+  ],
+  
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TruthLens AI",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  
+  "contextMenus": [
+    {
+      "id": "analyze-text",
+      "title": "Analyze with TruthLens AI",
+      "contexts": ["selection"]
+    },
+    {
+      "id": "analyze-page",
+      "title": "Analyze this page with TruthLens AI",
+      "contexts": ["page"]
+    }
+  ],
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.html", "popup.js", "content.js", "content.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  
+  "options_page": "options.html",
+  
+  "author": "TruthLens AI Team",
+  "homepage_url": "https://truthlens.ai",
+  "support_url": "https://truthlens.ai/support"
+}

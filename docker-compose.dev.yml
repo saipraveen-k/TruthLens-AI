@@ -1,0 +1,143 @@
+version: '3.8'
+
+services:
+  # Backend API Service (Development)
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: truthlens-backend-dev
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/truthlens_db
+      - REDIS_URL=redis://:redis123@redis:6379/0
+      - SECRET_KEY=dev-secret-key-change-in-production
+      - ENVIRONMENT=development
+      - LOG_LEVEL=DEBUG
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:8080
+      - RELOAD=true
+    volumes:
+      - ./backend:/app
+      - ./models_training:/app/models_training
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    ports:
+      - "8000:8000"
+    networks:
+      - truthlens-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--workers", "1"]
+
+  # Frontend Web Service (Development)
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      target: builder
+    container_name: truthlens-frontend-dev
+    restart: unless-stopped
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - REACT_APP_ENV=development
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    networks:
+      - truthlens-network
+    depends_on:
+      - backend
+    command: ["npm", "run", "dev"]
+
+  # PostgreSQL Database (Development)
+  postgres:
+    image: postgres:15-alpine
+    container_name: truthlens-postgres-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: truthlens_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - truthlens-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d truthlens_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis Cache (Development)
+  redis:
+    image: redis:7-alpine
+    container_name: truthlens-redis-dev
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass redis123
+    volumes:
+      - redis_dev_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - truthlens-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # pgAdmin (Development)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: truthlens-pgadmin-dev
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dev@truthlens.com
+      PGADMIN_DEFAULT_PASSWORD: dev
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+    volumes:
+      - pgadmin_dev_data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - truthlens-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # Development tools
+  adminer:
+    image: adminer:latest
+    container_name: truthlens-adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - truthlens-network
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_dev_data:
+    driver: local
+  pgadmin_dev_data:
+    driver: local
+  redis_dev_data:
+    driver: local
+
+networks:
+  truthlens-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { AlertTriangle, Balance, TrendingUp } from 'lucide-react';
+import { AlertTriangle, Scale as Balance, TrendingUp } from 'lucide-react';
 
 const FakeProbabilityBar = ({ probability }) => {
   const getProbabilityColor = (prob) => {
@@ -34,7 +34,7 @@ const FakeProbabilityBar = ({ probability }) => {
       className="glass-morphism rounded-2xl p-6"
     >
       <div className="flex items-center mb-4">
-        <div className={`p-2 rounded-lg ${probabilityColor.replace('bg-', 'bg-opacity-20 bg-')}`}>
+        <div className={`p-2 rounded-lg ${barColor.replace('bg-', 'bg-opacity-20 bg-')}`}>
           {probabilityIcon}
         </div>
         <div className="ml-3">

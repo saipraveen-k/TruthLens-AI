@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Link2, Upload, ArrowRight, Sparkles } from 'lucide-react';
-import TextInput from '../Input/TextInput';
-import URLInput from '../Input/URLInput';
-import PDFUpload from '../Input/PDFUpload';
+import TextInput from '../components/Input/TextInput';
+import URLInput from '../components/Input/URLInput';
+import PDFUpload from '../components/Input/PDFUpload';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('text');

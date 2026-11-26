@@ -93,7 +93,7 @@ const EmotionAnalysis = ({ emotionData }) => {
           </div>
           <div className="text-right">
             <p className="text-2xl font-bold text-white">
-              {(emotions[domantEmotion] * 100).toFixed(1)}%
+              {(emotions[dominantEmotion] * 100).toFixed(1)}%
             </p>
             <p className="text-white/60 text-xs">Confidence</p>
           </div>

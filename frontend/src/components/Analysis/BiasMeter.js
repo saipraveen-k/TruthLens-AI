@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Balance, AlertCircle, TrendingUp } from 'lucide-react';
+import { Scale as Balance, AlertCircle, TrendingUp } from 'lucide-react';
 
 const BiasMeter = ({ biasScore }) => {
   const getBiasData = (score) => {
